@@ -1,3 +1,5 @@
+var webpack = require('webpack');
+
 exports.devServer = ({ host, port } = {}) => ({
     devServer: {
         historyApiFallback: true,
