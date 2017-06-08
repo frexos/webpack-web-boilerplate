@@ -1,4 +1,6 @@
 var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 exports.devServer = ({ host, port } = {}) => ({
@@ -98,13 +100,18 @@ exports.loadPUG = ({ include, exclude } = {}) => ({
         rules: [
             {
                 test: /\.pug$/,
-                loader: ['html-loader', 'pug-html-loader?pretty&exports=false'],
+                loader: ['file-loader', 'pug-html-loader'],
             },
         ],
     },
+    // plugins: [
+    //     new HtmlWebpackPlugin({
+    //         template: './app/index.pug'
+    //     })
+    // ]
 });
 
-exports.loadPUG = ({ include, exclude } = {}) => ({
+exports.loadJQUERY = ({ include, exclude } = {}) => ({
     plugins: [
         new webpack.ProvidePlugin({
             $: 'jquery',
