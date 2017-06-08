@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 exports.devServer = ({ host, port } = {}) => ({
     devServer: {
@@ -12,6 +13,41 @@ exports.devServer = ({ host, port } = {}) => ({
         },
     },
 });
+
+exports.extractCSS = ({ include, exclude, use }) => {
+    // Output extracted CSS to a file
+    const plugin = new ExtractTextPlugin({
+        filename: '[name].css',
+    });
+
+    return {
+        module: {
+            rules: [
+                {
+                    test: /\.css$/,
+                    include,
+                    exclude,
+
+                    use: plugin.extract({
+                        use: ['css-loader'],
+                        fallback: 'style-loader',
+                    }),
+                },
+                {
+                    test: /\.scss$/,
+                    include,
+                    exclude,
+
+                    use: plugin.extract({
+                        use: ['css-loader', 'sass-loader'],
+                        fallback: 'style-loader',
+                    }),
+                },
+            ],
+        },
+        plugins: [ plugin ],
+    };
+};
 
 exports.lintJavaScript = ({ include, exclude, options }) => ({
     module: {
@@ -42,26 +78,32 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
         ],
     },
 });
+
 exports.loadSASS = ({ include, exclude } = {}) => ({
     module: {
         rules: [
             {
                 test: /\.scss$/,
+                include,
+                exclude,
+
                 use: ['style-loader', 'css-loader', 'sass-loader'],
             },
         ],
     },
 });
+
 exports.loadPUG = ({ include, exclude } = {}) => ({
     module: {
         rules: [
             {
                 test: /\.pug$/,
-                loaders: ['file-loader?name=[path][name].html', 'pug-html-loader?pretty&exports=false']
+                loader: ['html-loader', 'pug-html-loader?pretty&exports=false'],
             },
         ],
     },
 });
+
 exports.loadPUG = ({ include, exclude } = {}) => ({
     plugins: [
         new webpack.ProvidePlugin({
