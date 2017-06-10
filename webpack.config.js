@@ -18,14 +18,31 @@ const commonConfig = merge([
             path: PATHS.build,
             filename: '[name].js',
         },
+        // plugins: [
+        //     new HtmlWebpackPlugin({
+        //         title: 'Webpack demo',
+        //     }),
+        // ],
         plugins: [
             new HtmlWebpackPlugin({
-                title: 'Webpack demo',
+                // Required
+                inject: false,
+                // template: require('html-webpack-template-pug'),
+                // template: '!!pug-loader!node_modules/html-webpack-template-pug/layout.pug'
+                template: '!!pug-loader!app/index.pug',
+
+                // Optional
+                excludeJSChunks: 'style',	// don't include specific chunks in scripts (when .js is a byproduct of an already extracted .css)
+                // excludeJSChunks: ['style1', 'style2']
+                appMountId: 'app',
+                mobile: true,
+                title: 'My App'
+                // Other html-webpack-plugin options...
             }),
-        ],
+        ]
     },
     parts.lintJavaScript({ include: PATHS.app }),
-    parts.loadPUG(),
+    // parts.loadPUG(),
     parts.loadJQUERY(),
 ]);
 

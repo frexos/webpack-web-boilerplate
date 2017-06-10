@@ -95,21 +95,37 @@ exports.loadSASS = ({ include, exclude } = {}) => ({
     },
 });
 
-exports.loadPUG = ({ include, exclude } = {}) => ({
-    module: {
-        rules: [
-            {
-                test: /\.pug$/,
-                loader: ['file-loader', 'pug-html-loader'],
-            },
-        ],
-    },
-    // plugins: [
-    //     new HtmlWebpackPlugin({
-    //         template: './app/index.pug'
-    //     })
-    // ]
-});
+// exports.loadPUG = ({ include, exclude } = {}) => ({
+//     module: {
+//         rules: [
+//             {
+//                 test: /\.pug$/,
+//                 loader: ['file-loader', 'pug-html-loader'],
+//             },
+//         ],
+//     },
+//     plugins: [
+//         new HtmlWebpackPlugin({
+//             template: './app/index.pug'
+//         })
+//     ]
+// });
+
+// exports.loadPUG = ({ include, exclude } = {}) => ({
+//     plugins: [
+//         new HtmlWebpackPlugin({
+//           // Required
+//           inject: false,
+//           template: '!!pug-loader!index.pug',
+//           // Optional
+//           appMountId: 'app',
+//           mobile: true,
+//           title: 'My App'
+//           // Other options...
+//         })
+//       ]
+// });
+
 
 exports.loadJQUERY = ({ include, exclude } = {}) => ({
     plugins: [
