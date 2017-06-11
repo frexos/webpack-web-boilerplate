@@ -42,7 +42,7 @@ const commonConfig = merge([
         ]
     },
     parts.lintJavaScript({ include: PATHS.app }),
-    // parts.loadPUG(),
+    parts.loadPUG(),
     parts.loadJQUERY(),
 ]);
 

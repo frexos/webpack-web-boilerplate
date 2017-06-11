@@ -84,13 +84,13 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jQuery__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jQuery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jQuery__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jquery__);
 
 
 (function () {
 
-    __WEBPACK_IMPORTED_MODULE_0_jQuery___default()(document).ready(function() {
+    __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function() {
         console.log('It works!');
     });
 

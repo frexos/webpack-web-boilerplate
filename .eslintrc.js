@@ -12,7 +12,7 @@ module.exports = {
     rules: {
         'comma-dangle': ['error', 'always-multiline'],
         indent: ['error', 4],
-        'linebreak-style': ['error', 'windows'],
+        'linebreak-style': 0,
         quotes: ['error', 'single'],
         semi: ['error', 'always'],
         'no-unused-vars': ['warn'],
