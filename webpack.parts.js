@@ -101,13 +101,14 @@ exports.loadSASS = ({ include, exclude } = {}) => ({
                 include,
                 exclude,
 
-                use: ['style-loader', 'css-loader', 'sass-loader'],
-                // loader: sassLoader,
-                options: {
-                    includePaths: [
-                        path.resolve(__dirname, "/scss/includePath")
-                    ]
-                },
+                use: ['style-loader', 'css-loader', {
+                    loader: 'sass-loader',
+                    options: {
+                        includePaths: [
+                            path.resolve(__dirname, "/scss/includePath")
+                        ]
+                    },
+                }],
             },
         ],
     },

@@ -27,7 +27,8 @@ const commonConfig = merge([
         plugins: [
             new HtmlWebpackPlugin({
                 // Required
-                inject: false,
+                inject: true,
+                // inject: false,
                 // template: require('html-webpack-template-pug'),
                 // template: '!!pug-loader!node_modules/html-webpack-template-pug/layout.pug'
                 template: '!!pug-loader!app/index.pug',
