@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-
+const path = require('path');
+// const sassLoader = require.resolve("sass-loader");
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 exports.devServer = ({ host, port } = {}) => ({
@@ -40,9 +41,11 @@ exports.extractCSS = ({ include, exclude, use }) => {
                     include,
                     exclude,
 
-                    use: plugin.extract({
+                    use:
+                        plugin.extract({
                         use: ['css-loader', 'sass-loader'],
                         fallback: 'style-loader',
+
                     }),
                 },
             ],
@@ -81,6 +84,15 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
     },
 });
 
+exports.autoprefix = () => ({
+    loader: 'postcss-loader',
+    options: {
+        plugins: () => ([
+            require('autoprefixer')(),
+        ]),
+    },
+});
+
 exports.loadSASS = ({ include, exclude } = {}) => ({
     module: {
         rules: [
@@ -90,6 +102,12 @@ exports.loadSASS = ({ include, exclude } = {}) => ({
                 exclude,
 
                 use: ['style-loader', 'css-loader', 'sass-loader'],
+                // loader: sassLoader,
+                options: {
+                    includePaths: [
+                        path.resolve(__dirname, "/scss/includePath")
+                    ]
+                },
             },
         ],
     },

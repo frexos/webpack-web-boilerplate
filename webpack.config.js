@@ -13,6 +13,7 @@ const commonConfig = merge([
     {
         entry: {
             app: PATHS.app,
+            bootstrap: path.resolve(__dirname, "node_modules/bootstrap/scss/bootstrap.scss"),
         },
         output: {
             path: PATHS.build,
@@ -47,7 +48,10 @@ const commonConfig = merge([
 ]);
 
 const productionConfig = merge([
-    parts.extractCSS({ use: ['css-loader', 'sass-loader'] }),
+    // parts.extractCSS({ use: ['css-loader', 'sass-loader'] }),
+    parts.extractCSS({
+        use: ['css-loader', 'sass-loader', parts.autoprefix()],
+    }),
 ]);
 
 const developmentConfig = merge([
