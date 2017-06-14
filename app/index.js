@@ -1,6 +1,6 @@
 import component from './component';
 import './main.css';
 import './styles/home.scss';
-import './scripts/home.js';
+// import './scripts/home.js';
 
 document.body.appendChild(component());
