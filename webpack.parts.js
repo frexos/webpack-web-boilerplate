@@ -132,6 +132,26 @@ exports.loadPUG = ({ include, exclude } = {}) => ({
     },
 });
 
+// LOAD IMAGES
+
+exports.loadImages = ({ include, exclude, options } = {}) => ({
+    module: {
+        rules: [
+            {
+                test: /\.(png|jpg|svg)$/,
+                include,
+                exclude,
+
+                use: {
+                    loader: 'file-loader',
+                    // loader: 'url-loader',
+                    options,
+                },
+            },
+        ],
+    },
+});
+
 // DECLARE JQUERY GLOBALLY
 
 exports.loadJQUERY = ({ include, exclude } = {}) => ({

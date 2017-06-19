@@ -1,0 +1,15 @@
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import "/header/_header";
+//@import "/footer/footer.scss";
+
+body {
+  color: yellow;
+  background-image: url("./images/rulenumberone.jpg");
+  div {
+    color: red;
+  }
+  img {
+    max-width: 300px;
+    height: auto;
+  }
+}

@@ -12,8 +12,8 @@ const PATHS = {
 const commonConfig = merge([
     {
         entry: {
-            app: PATHS.app,
-            bootstrap: path.resolve(__dirname, "node_modules/bootstrap/scss/bootstrap.scss"),
+            // app: PATHS.app,
+            app: path.resolve(__dirname, "app/app.scss"),
         },
         output: {
             path: PATHS.build,
@@ -39,7 +39,6 @@ const commonConfig = merge([
 ]);
 
 const productionConfig = merge([
-    // parts.extractCSS({ use: ['css-loader', 'sass-loader'] }),
     parts.extractCSS({
         use: ['css-loader', 'sass-loader', parts.autoprefix()],
     }),
@@ -62,6 +61,12 @@ const productionConfig = merge([
             safe: true,
         },
     }),
+    parts.loadImages({
+        options: {
+            // limit: 1000,
+            name: './images/[name].[ext]',
+        },
+    }),
 
 ]);
 
@@ -73,6 +78,8 @@ const developmentConfig = merge([
     }),
     parts.loadCSS(),
     parts.loadSASS(),
+    parts.loadImages(),
+
 ]);
 
 module.exports = (env) => {
