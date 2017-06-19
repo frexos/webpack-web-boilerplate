@@ -1,11 +1,15 @@
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
-// const sassLoader = require.resolve("sass-loader");
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const BabiliPlugin = require('babili-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const cssnano = require('cssnano');
 
 exports.devServer = ({ host, port } = {}) => ({
     devServer: {
+        // hot: true,
         historyApiFallback: true,
         stats: 'errors-only',
         host, // Defaults to `localhost`
@@ -128,6 +132,8 @@ exports.loadPUG = ({ include, exclude } = {}) => ({
     },
 });
 
+// DECLARE JQUERY GLOBALLY
+
 exports.loadJQUERY = ({ include, exclude } = {}) => ({
     plugins: [
         new webpack.ProvidePlugin({
@@ -136,5 +142,33 @@ exports.loadJQUERY = ({ include, exclude } = {}) => ({
             "window.jQuery": 'jquery',
             "windows.jQuery": 'jquery',
         })
+    ],
+});
+
+// UGLIFY JS
+
+exports.minifyJavaScript = () => ({
+    plugins: [
+        new BabiliPlugin(),
+    ],
+});
+
+// UGLIFY CSS
+
+exports.minifyCSS = ({ options }) => ({
+    plugins: [
+        new OptimizeCSSAssetsPlugin({
+            cssProcessor: cssnano,
+            cssProcessorOptions: options,
+            canPrint: false,
+        }),
+    ],
+});
+
+// CLEAN BUILD DIRECTORY BETWEEN BUILDS
+
+exports.clean = (path) => ({
+    plugins: [
+        new CleanWebpackPlugin([path]),
     ],
 });
