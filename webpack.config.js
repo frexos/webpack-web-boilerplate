@@ -12,8 +12,8 @@ const PATHS = {
 const commonConfig = merge([
     {
         entry: {
-            // app: PATHS.app,
-            app: path.resolve(__dirname, "app/app.scss"),
+            app: PATHS.app,
+            // app1: path.resolve(__dirname, "app/app.scss"),
         },
         output: {
             path: PATHS.build,
@@ -31,11 +31,17 @@ const commonConfig = merge([
                 mobile: true,
                 title: 'My App',
             }),
-        ]
+        ],
+
     },
     parts.lintJavaScript({ include: PATHS.app }),
     parts.loadPUG(),
     parts.loadJQUERY(),
+    parts.loadFonts({
+        options: {
+            name: '[name].[ext]',
+        },
+    }),
 ]);
 
 const productionConfig = merge([
